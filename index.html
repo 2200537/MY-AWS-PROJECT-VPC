@@ -55,22 +55,12 @@
 <p>Process:this done by configuring the individual VPC components one after the other instead of a group configuration. Below is a summary of the basic steps.</p> 
     A.	VPC</p>
 I.	Create a VPC only.</p>
-B.	SUBNETS:</p>
-I.	Create Public subnet in availability zone 1.</p>
-II.	Create private subnet in availability zone 1.</p>
-III.	Create public subnet in availability zone 2.</p>
+B.	SUBNETS: I.	Create Public subnet in availability zone 1; II. Create private subnet in availability zone 1; III.	Create public subnet in availability zone 2;
 IV.	Create private subnet in availability zone 2.</p>
-C.	Internet gateway</p>
-I.	Create an Internet gateway.</p>
-II.	Attach the Internet gateway to your VPC.</p>
-D.	NAT gateways:</p>
-I.	Create NAT gateway for availability zone 1.</p>
-II.	create NAT gateway for availability zone 2.</p>
-E.	Routes tables:</p>
-I.	Create a route table for the private subnet in availability zone 1.</p>
-II.	Create a route table for the private subnet in availability zone 2.</p>
-III.	Edit both routes and associate them with the private subnets.</p>
-IV.	Give a name to your dummy route table and associated with the public subnets.</p>
+C.	INTERNET GATEWAY: I. Create an Internet gateway; II.	Attach the Internet gateway to your VPC.</p>
+D.	NAT GATEWAYS: I.	Create NAT gateway for availability zone 1; II.	create NAT gateway for availability zone 2.</p>
+E.	ROUTE TABLES: I.	Create a route table for the private subnet in availability zone 1; II.	Create a route table for the private subnet in availability zone 2;
+III.	Edit both routes and associate them with the private subnets; IV.	Give a name to your dummy route table and associated with the public subnets.</p>
     
 <p>Comprehensive steps:</p>
 A.	CREATING A VPC:</p> 
