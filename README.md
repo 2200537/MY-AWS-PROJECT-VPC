@@ -1,0 +1,2 @@
+# MY-AWS-PROJECT-VPC
+Creating a VPC
