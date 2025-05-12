@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><blank>MY-AWS-PROJECT-VPC</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f8f9fa;
+      color: #333;
+         }
+    header {
+      background: white;
+      color: black;
+      padding: 1rem 2rem;
+      text-align: centre;
+           }
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+      text-align: left;
+    }
+    h2 {
+      margin-top: 2rem;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background: white;
+      margin: 0.5rem 0;
+      padding: 1rem;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    a {
+      color: green;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MY-AWS-PROJECT-VPC</h1>
+    <ul>
+  <li>
+    <p>Task: Setting up a VPC configuration in AWS envirronment. </p>
+</li>
+</ul>
+<p>Process:this done by configuring the individual VPC components one after the other instead of a group configuration. Below is a summary of the basic steps.</p> 
+    A.	VPC</p>
+I.	Create a VPC only.</p>
+B.	SUBNETS:</p>
+I.	Create Public subnet in availability zone 1.</p>
+II.	Create private subnet in availability zone 1.</p>
+III.	Create public subnet in availability zone 2.</p>
+IV.	Create private subnet in availability zone 2.</p>
+C.	Internet gateway</p>
+I.	Create an Internet gateway.</p>
+II.	Attach the Internet gateway to your VPC.</p>
+D.	NAT gateways:</p>
+I.	Create NAT gateway for availability zone 1.</p>
+II.	create NAT gateway for availability zone 2.</p>
+E.	Routes tables:</p>
+I.	Create a route table for the private subnet in availability zone 1.</p>
+II.	Create a route table for the private subnet in availability zone 2.</p>
+III.	Edit both routes and associate them with the private subnets.</p>
+IV.	Give a name to your dummy route table and associated with the public subnets.</p>
+    
+<p>Comprehensive steps:</p>
+A.	CREATING A VPC:</p> 
+1.	Type-in ‘VPC’ into the search tab close to ‘Services’ in the AWS homepage.</p>
+2.	Click on the ‘VPC’ and ‘Create VPC’ </p>
+3.	Under ‘VPC settings’ tick ‘VPC only’ (to set up the VPC and its components one after the other) And put a unique name (without spaces) for your VPC</p>
+4.	Select ‘IPv4 CIDR Manual input’ and put your VPC IP (IPv4 CIDR Block) address block accordingly.</p>
+5.	Leave every other thing as it is and click on ‘Create VPC’ to create your VPC.</p>
+    <p><a href="Creating VPC.pdf" target="_blank">View</a> | <a href="Creating VPC.pdf" download>Download</a></p>
+B.	CREATING SUBNETS:</p>
+1.	Under the VPC dashboard, select ‘Subnets’ And click on ‘Create subnet’</p>
+2.	Under ‘VPC ID’, Click to select the VPC you created above from the dropdown list.</p>
+3.	Under ‘Subnet settings’, type-in a unique name for your public subnet, select your availability zone 1, followed by CIDR block for this zone accordingly.</p>
+4.	Click on ‘Create Subnet’ to create your public subnet in availability zone 1.</p>
+5.	Repeat step 1-4 to create private subnet in availability zone 1.</p>
+6.	Repeat step 1-4 to create public subnet in availability zone 2.</p>
+7.	Repeat step 1-4 to create private subnet in availability zone 2.</p>
+    <a href="Creating Subnets.pdf" target="_blank">View</a> | <a href="Creating Subnets.pdf" download>Download</a></p>
+C.	CREATING INTERNET GATEWAY</p>
+1.	Under the VPC dashboard, select ‘Internet Gateway’ And click on ‘Create Internet Gateway’.</p>
+2.	Under ‘Internet Gateway settings’ type-in a unique name (without spaces) For your Internet gateway.</p>
+3.	Click on ‘Create Internet Gateway’ to complete the process.
+4.	Click on ‘Attach to a VPC’ (So attach your Internet gateway to a VPC.), select your VPC from ‘Select a VPC’ under available VPCs and Attach your Internet gateway.</p>
+<p> <a href="Creating Internet Gateway.pdf" target="_blank">View</a> | <a href="Creating Internet Gateway.pdf" download>Download</a>  </p>  
+
+  D.	CREATING NAT GATEWAYS</p>
+1.	Select ‘NAT Gateway’ under the VPC dashboard and click on ‘Create NAT gateway’ (This NAT gateway is created to hide the private subnet’s IP address so that they can connect to the public server without exposing their IP as such users cannot connect back to the private subnet)</p> 
+2.	Type-in a unique name for you NAT gateway (for availability zone 1) under ‘NAT gateway settings’ and select a public subnet from the dropdown.</p>
+3.	Click on ‘Allocate Elastic IP’ to allocate an elastic IP address to your NAT gateway and click ‘Create NAT gateway’ to finish the process.</p>
+4.	Repeat steps 1-3 to create a NAT gateway for availability zone 2.</p>
+ <p><a href="Creating NAT Gateway.pdf" target="_blank">View</a> | <a href="Creating NAT Gateway.pdf" download>Download</a></p>
+   
+E.	CREATING ROUTE TABLES:</p>
+1.	Click on ‘Create route table’ to create a route table for the private subnets.</p>
+2.	Choose a name for your route tables and select your custom VPC under ‘VPC’ and click on ‘Create Route table’ to complete the process.</p>
+3.	Repeat step 1 and 2 to create a route table for your second private subnet.</p>
+4.	Goto ‘Route table’ under VPC dashboard, click on the route table ID for the first route table and goto ‘Edit route’ -> ‘Add route’.</p>
+5.	Select ‘0.0.0.0/0’ for Destination under Route 2, under target, select ‘NAT gateway’ from the dropdown and choose your first custom NAT gateway, then save changes.</p>
+6.	Goto ‘subnet associations’ -> ‘Edit subnet associations’.</p>
+7.	Under ‘Available Subnets’, select your first private subnet and associate your first route table with your first private subnet, then save associations.</p>
+8.	Repeat step 4 – 7 to edit the second route table and associate it with the second private subnet.</p>
+    <p><a href="Creating Route tables.pdf" target="_blank">View</a> | <a href="Creating Route tables.pdf" download>Download</a></p></p>
+    
+9.	Under VPC dashboard, select ‘Route tables’.</p>
+10.	Goto ‘Route tables’ under VPC dashboard, locate the edit pen under ‘Route tables’ -> name (for the route table attached to your custom VPC), click to give a name to your dummy route table to identify it as a public route table (so that it serves all the public subnets) and save.</p>
+11.	Tick to select your dummy route table (which has been named public-route table), then go down to ‘Routes’ and click on ‘Edit route’ on the righthand-side.</p>
+12.	Click on ‘Add route’, select ‘0.0.0.0/0’ from the dropdown list for ‘Destination’ and against ‘Target’ ‘Internet Gateway’ from the dropdown, then select your custom Internet Gateway and save.</p>
+13.	 Go to ‘subnet associations’ and click on ‘Edit associations’ to associate your public (dummy) route table with your public subnet.</p>
+14.	Select your public subnets and ‘Save changes’.</p></p>
+<p><a href="Editing Public Route table.pdf" target="_blank">View</a> | <a href="Editing Public Route table.pdf" download>Download</a>  </p></p>
+  
+15.	Goto VPC dashboard and click on ‘Your VPCs’</p>
+16.	Tick to select your custom VPC, go down and click on ‘Resource map’, to view the map of your VPC network.</p>
+
+<p><a href="VPC Map.pdf" target="_blank">View</a> | <a href="VPC Map.pdf" download>Download</a></p>
+</html>
